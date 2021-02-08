@@ -12,9 +12,9 @@ lazy val SystemTest = config("st").extend(IntegrationTest)
 lazy val root = (project in file("."))
   .configs(IntegrationTest, Custom, SystemTest)
   .settings(
-    inConfig(IntegrationTest)(Defaults.testSettings ++ sbt.plugins.SemanticdbPlugin.configurationSettings),
-    inConfig(Custom)(Defaults.configSettings ++ sbt.plugins.SemanticdbPlugin.configurationSettings),
-    inConfig(SystemTest)(Defaults.testSettings ++ sbt.plugins.SemanticdbPlugin.configurationSettings),
+    Defaults.itSettings,
+    inConfig(Custom)(Defaults.configSettings),
+    inConfig(SystemTest)(Defaults.testSettings),
     check := {
       val scalacOptionsCountsAcrossConfigs = scalacOptions.?.all(anyConfigInThisProject)
         .value

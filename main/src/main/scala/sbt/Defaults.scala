@@ -81,6 +81,7 @@ import sbt.nio.Keys._
 import sbt.nio.file.syntax._
 import sbt.nio.file.{ FileTreeView, Glob, RecursiveGlob }
 import sbt.nio.Watch
+import sbt.plugins.SemanticdbPlugin
 import sbt.std.TaskExtra._
 import sbt.testing.{ AnnotatedFingerprint, Framework, Runner, SubclassFingerprint }
 import sbt.util.CacheImplicits._
@@ -2491,7 +2492,7 @@ object Defaults extends BuildCommon {
   lazy val configSettings: Seq[Setting[_]] =
     Classpaths.configSettings ++ configTasks ++ configPaths ++ packageConfig ++
       Classpaths.compilerPluginConfig ++ deprecationSettings ++
-      BuildServerProtocol.configSettings
+      BuildServerProtocol.configSettings ++ SemanticdbPlugin.configurationSettings
 
   lazy val compileSettings: Seq[Setting[_]] =
     configSettings ++ (mainBgRunMainTask +: mainBgRunTask) ++ Classpaths.addUnmanagedLibrary

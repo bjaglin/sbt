@@ -14,7 +14,6 @@ import Keys._
 import sbt.internal.SysProp
 import sbt.librarymanagement.syntax._
 import sbt.librarymanagement.{ Configuration, CrossVersion }
-import Project.inConfig
 import sbt.internal.inc.ScalaInstance
 import sbt.ScopeFilter.Make._
 
@@ -48,9 +47,7 @@ object SemanticdbPlugin extends AutoPlugin {
       else if (sv.startsWith("3.")) "-Xsemanticdb"
       else "-Yrangepos"
     }
-  ) ++
-    inConfig(Compile)(configurationSettings) ++
-    inConfig(Test)(configurationSettings)
+  )
 
   lazy val configurationSettings: Seq[Def.Setting[_]] = List(
     semanticdbTargetRoot := {
